@@ -15,5 +15,5 @@ export class Book {
   price: number;
 
   @Field()
-  createAt: Date;
+  createdAt: Date;
 }

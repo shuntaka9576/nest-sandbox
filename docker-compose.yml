@@ -1,0 +1,18 @@
+version: "3.9"
+services:
+  nest-db:
+    image: mysql:8.0.29
+    platform: linux/amd64
+    container_name: nest-db
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+      MYSQL_USER: nest
+      MYSQL_PASSWORD: nest
+      MYSQL_DATABASE: nest_sample_app
+    volumes:
+      - nest-db-data:/var/lib/mysql
+      - $PWD/_tools/mysql/conf.d:/etc/mysql/conf.d:cached
+    ports:
+      - "3306:3306"
+volumes:
+  nest-db-data:

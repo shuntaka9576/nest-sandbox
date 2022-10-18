@@ -16,7 +16,9 @@ export class BooksService {
   }
 
   findOneById(id: number): Promise<Book> {
-    return this.booksRepository.findOne({});
+    // type error
+    // return this.booksRepository.findOne(id);
+    return this.booksRepository.findOne({ where: { id: id } });
   }
 
   async create(data: NewBookInput): Promise<Book> {

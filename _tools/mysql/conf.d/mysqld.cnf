@@ -1,7 +1,7 @@
 [mysqld]
 default-authentication-plugin=mysql_native_password
 character_set_server=utf8mb4
-sql_mode=TRADITIONAL,NO_AUTO_VALUE_ON_ZERO,ONLY_FULL_GROUP_BY
+sql_mode=TRADITIONAL,ONLY_FULL_GROUP_BY
 general_log=1
 log_output=TABLE
 slow_query_log=1

@@ -23,7 +23,7 @@ export class BooksService {
 
   async create(data: NewBookInput): Promise<Book> {
     const book = this.booksRepository.create(data);
-    const savedBook = await this.booksRepository.save({ id: null, ...book });
+    const savedBook = await this.booksRepository.save({ ...book });
 
     return savedBook;
   }

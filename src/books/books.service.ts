@@ -23,9 +23,9 @@ export class BooksService {
 
   async create(data: NewBookInput): Promise<Book> {
     const book = this.booksRepository.create(data);
-    await this.booksRepository.save(book);
+    const savedBook = await this.booksRepository.save({ id: null, ...book });
 
-    return book;
+    return savedBook;
   }
 
   async remove(id: number): Promise<boolean> {

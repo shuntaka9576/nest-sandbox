@@ -16,7 +16,7 @@ import { Book } from './books/book';
     }),
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: 'localhost',
+      host: 'nest-db',
       port: 3306,
       username: 'nest',
       password: 'nest',

@@ -1,5 +1,14 @@
 version: "3.9"
 services:
+  nest-app:
+    container_name: nest-app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    networks:
+      - app-net
   nest-db:
     image: mysql:8.0.29
     platform: linux/arm64/v8
@@ -14,5 +23,10 @@ services:
       - $PWD/_tools/mysql/conf.d:/etc/mysql/conf.d:cached
     ports:
       - "3306:3306"
+    networks:
+      - app-net
+networks:
+  app-net:
+    driver: bridge
 volumes:
   nest-db-data:

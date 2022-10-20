@@ -10,7 +10,8 @@ RUN npm run build && npm prune --production
 FROM node:16.13.1-alpine
 
 ENV PORT=3000
-ENV NODE_ENV=production
+# /graphqlを有効にしたい場合
+# ENV NODE_ENV=production
 WORKDIR /app
 
 COPY --from=build /app/dist /app/dist

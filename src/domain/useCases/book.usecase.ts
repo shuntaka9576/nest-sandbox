@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Book } from 'src/entities/book';
+import { Book } from '../../entities/book';
 
 @Injectable()
 export class BooksUseCase {
@@ -15,8 +15,6 @@ export class BooksUseCase {
   }
 
   findOneById(id: number): Promise<Book> {
-    // type error
-    // return this.booksRepository.findOne(id);
     return this.booksRepository.findOne({ where: { id: id } });
   }
 

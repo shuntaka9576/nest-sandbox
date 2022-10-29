@@ -2,11 +2,15 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 import { join } from 'path';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { BooksModule } from './books/books.module';
+// import { BooksModule } from './books/books.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Book } from './books/book';
+import { Book } from './entities/book';
+import { HandlerModule } from './handlers/handler.module';
+import { DomainModule } from './domain/domain.module';
+const username = process.env.DB_USERNAME ?? 'nest';
+const password = process.env.DB_PASSWORD ?? 'nest';
+const host = process.env.DB_HOST ?? '127.0.0.1';
+const dbname = process.env.DB_DBNAME ?? 'nest_sample_app';
 
 @Module({
   imports: [
@@ -16,17 +20,18 @@ import { Book } from './books/book';
     }),
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: 'nest-db',
+      host: host,
       port: 3306,
-      username: 'nest',
-      password: 'nest',
-      database: 'nest_sample_app',
+      username: username,
+      password: password,
+      database: dbname,
       entities: [Book],
       synchronize: true,
     }),
-    BooksModule,
+    HandlerModule,
+    DomainModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [],
+  providers: [],
 })
 export class AppModule {}

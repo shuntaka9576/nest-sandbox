@@ -1,11 +1,10 @@
 import { Injectable } from '@nestjs/common';
-import { Book } from './book';
-import { NewBookInput } from './dto/newBook.input';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { Book } from 'src/entities/book';
 
 @Injectable()
-export class BooksService {
+export class BooksUseCase {
   constructor(
     @InjectRepository(Book)
     private booksRepository: Repository<Book>,
@@ -21,7 +20,11 @@ export class BooksService {
     return this.booksRepository.findOne({ where: { id: id } });
   }
 
-  async create(data: NewBookInput): Promise<Book> {
+  async create(data: {
+    title: string;
+    price: number;
+    author: string;
+  }): Promise<Book> {
     const book = this.booksRepository.create(data);
     const savedBook = await this.booksRepository.save({ ...book });
 

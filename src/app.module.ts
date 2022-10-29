@@ -6,7 +6,6 @@ import { join } from 'path';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Book } from './entities/book';
 import { HandlerModule } from './handlers/handler.module';
-import { DomainModule } from './domain/domain.module';
 const username = process.env.DB_USERNAME ?? 'nest';
 const password = process.env.DB_PASSWORD ?? 'nest';
 const host = process.env.DB_HOST ?? '127.0.0.1';
@@ -29,7 +28,6 @@ const dbname = process.env.DB_DBNAME ?? 'nest_sample_app';
       synchronize: true,
     }),
     HandlerModule,
-    DomainModule,
   ],
   controllers: [],
   providers: [],
